@@ -5,7 +5,6 @@ function calculateTip(bill) {
       return bill * 0.2;
     }
   }
-  
   console.log("Tip for $100 bill:", calculateTip(100));
   
   const bills = [50, 100, 200, 350];
