@@ -1,0 +1,174 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+  font-family: "Arial", sans-serif;
+  background: skyblue;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+/* App Container */
+.app {
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  position: absolute;
+  top: 50px;
+  padding: 20px;
+  width: 350px;
+}
+
+/* Wrapper */
+#wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Input Field */
+#wrapper input[type="text"] {
+  width: calc(100% - 60px);
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 16px;
+}
+
+#wrapper input:focus {
+  outline: none;
+  border-bottom: 2px solid #28a745;
+}
+
+/* Add Button */
+#add-btn {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#add-btn:hover {
+  background-color: #218838;
+}
+
+/* Tasks Section */
+#tasks {
+  margin-top: 20px;
+}
+
+#pending-tasks {
+  font-size: 18px;
+  color: #333;
+}
+
+.count-value {
+  font-weight: bold;
+}
+
+/* Error Message */
+#error {
+  color: red;
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+/* Task Div Styles */
+.task {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.task:hover {
+  background-color: #f0f0f0;
+}
+
+/* Checkbox */
+.task-check {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Task Name */
+.taskname {
+  flex-grow: 1;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+/* Edit and Delete Buttons */
+button.edit,
+button.delete {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 5px;
+  font-size: 16px;
+  color: #333;
+  transition: color 0.3s ease;
+}
+
+button.edit:hover {
+  color: #007bff;
+}
+
+button.delete:hover {
+  color: #dc3545;
+}
+
+/* Icons */
+button.edit i,
+button.delete i {
+  pointer-events: none; /* Ensures the icon does not block button clicks */
+}
+
+/* Responsive Design */
+@media (max-width: 400px) {
+  .task {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .taskname {
+    margin-bottom: 10px;
+  }
+  .app {
+    width: 100%;
+    padding: 15px;
+  }
+
+  input[type="text"] {
+    width: calc(100% - 50px);
+  }
+
+  #add-btn {
+    padding: 10px 10px;
+  }
+}
