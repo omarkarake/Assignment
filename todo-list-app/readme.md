@@ -94,6 +94,7 @@ To run this project locally:
 
 1. Clone the repository.
 2. Open `index.html` inside todo-list-app in a web browser.
+3. or use this link that is hosted: https://omalitodo.netlify.app/
 
 ## Contributions
 
