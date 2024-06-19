@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Gallery</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="upper-body">
+      <div class="heading">
+        <h1>Interactive Image gallery</h1>
+      </div>
+    </div>
+    <div class="lower-body">
+      <div id="image-container"></div>
+    </div>
+    <!-- Modal -->
+    <div id="image-modal" class="modal">
+      <span class="close">&times;</span>
+      <img class="modal-content" id="modal-image" />
+      <div id="caption"></div>
+      <a class="prev" id="prev">&#10094;</a>
+      <a class="next" id="next">&#10095;</a>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
