@@ -38,10 +38,10 @@ function displayTodos() {
 
     const todoDetails = document.createElement("div");
     todoDetails.innerHTML = `
-        <strong>${todo.title}</strong>
-        <p>${todo.description}</p>
-        <small>Due: ${new Date(todo.dueDate).toLocaleString()}</small>
-      `;
+    <strong>${todo.title}</strong>
+    <p>${todo.description}</p>
+    <small>Due: ${new Date(todo.dueDate).toLocaleString()}</small>
+    `;
 
     const actionButtons = document.createElement("div");
     actionButtons.classList.add("action-btn");
@@ -101,3 +101,5 @@ sortDescButton.addEventListener("click", () => {
   todos.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate));
   displayTodos();
 });
+
+console.log(new Date());
