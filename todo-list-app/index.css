@@ -1,174 +1,151 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-/* General Styles */
+/* styles.css */
 body {
-  font-family: "Arial", sans-serif;
-  background: skyblue;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
+  align-items: start;
   height: 100vh;
 }
 
-/* App Container */
-.app {
-  background: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.container {
+  max-width: 500px;
+  width: 100%;
+  background-color: #ffffff;
   border-radius: 10px;
-  position: absolute;
-  top: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: 350px;
+  box-sizing: border-box;
 }
 
-/* Wrapper */
-#wrapper {
+.due-date {
+  margin: 12px 0px;
+  padding-bottom: 12px;
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-/* Input Field */
-#wrapper input[type="text"] {
-  width: calc(100% - 60px);
-  padding: 10px;
   border: none;
-  border-bottom: 2px solid black;
-  font-size: 16px;
+  border-bottom: 2px solid green;
 }
 
-#wrapper input:focus {
-  outline: none;
-  border-bottom: 2px solid #28a745;
-}
-
-/* Add Button */
-#add-btn {
-  background-color: #28a745;
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-#add-btn:hover {
-  background-color: #218838;
-}
-
-/* Tasks Section */
-#tasks {
-  margin-top: 20px;
-}
-
-#pending-tasks {
-  font-size: 18px;
-  color: #333;
-}
-
-.count-value {
-  font-weight: bold;
-}
-
-/* Error Message */
-#error {
-  color: red;
-  display: none;
+h1 {
   text-align: center;
-  margin-top: 20px;
+  color: #333333;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input,
+textarea {
+  padding: 5px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 12px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background-color: green;
+  color: white;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.action-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 5px; /* Optional: Adds space between the buttons */
+}
+
+/* Additional styles for buttons (optional) */
+.action-btn button {
+  margin: 5px 0; /* Optional: Adds space between the buttons */
+}
+
+#todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border: 1px solid #ececec;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: background-color 0.3s;
+}
+
+.todo-item.completed {
+  text-decoration: line-through;
+  background-color: #e0e0e0;
+}
+
+.todo-item div {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.todo-item button {
+  padding: 8px 12px;
+  margin-left: 5px;
   font-size: 14px;
 }
 
-/* Task Div Styles */
-.task {
-  margin-top: 10px;
+.todo-item button.complete {
+  background-color: #28a745;
+}
+
+.todo-item button.complete:hover {
+  background-color: #218838;
+}
+
+.todo-item button.edit {
+  background-color: #ffc107;
+}
+
+.todo-item button.edit:hover {
+  background-color: #e0a800;
+}
+
+.todo-item button.delete {
+  background-color: #dc3545;
+}
+
+.todo-item button.delete:hover {
+  background-color: #c82333;
+}
+
+.sort-buttons {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 10px 15px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  background-color: #fafafa;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease;
+  margin-bottom: 15px;
 }
 
-.task:hover {
-  background-color: #f0f0f0;
-}
-
-/* Checkbox */
-.task-check {
-  margin-right: 10px;
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-/* Task Name */
-.taskname {
+.sort-buttons button {
   flex-grow: 1;
-  font-size: 16px;
-  margin-right: 10px;
+  margin: 0 5px;
+  background-color: #6c757d;
 }
 
-.completed {
-  text-decoration: line-through;
-  color: #888;
-}
-
-/* Edit and Delete Buttons */
-button.edit,
-button.delete {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  margin-left: 5px;
-  font-size: 16px;
-  color: #333;
-  transition: color 0.3s ease;
-}
-
-button.edit:hover {
-  color: #007bff;
-}
-
-button.delete:hover {
-  color: #dc3545;
-}
-
-/* Icons */
-button.edit i,
-button.delete i {
-  pointer-events: none; /* Ensures the icon does not block button clicks */
-}
-
-/* Responsive Design */
-@media (max-width: 400px) {
-  .task {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .taskname {
-    margin-bottom: 10px;
-  }
-  .app {
-    width: 100%;
-    padding: 15px;
-  }
-
-  input[type="text"] {
-    width: calc(100% - 50px);
-  }
-
-  #add-btn {
-    padding: 10px 10px;
-  }
+.sort-buttons button:hover {
+  background-color: #5a6268;
 }

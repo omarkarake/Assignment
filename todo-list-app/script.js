@@ -1,85 +1,105 @@
-const addBtn = document.querySelector("#add-btn");
-const newTaskInput = document.querySelector("#wrapper input");
-const tasksContainer = document.querySelector("#tasks");
-const error = document.getElementById("error");
-const countValue = document.querySelector(".count-value");
-let taskCount = 0;
+document.addEventListener("DOMContentLoaded", () => {
+  const todoForm = document.getElementById("todo-form");
+  const todoList = document.getElementById("todo-list");
+  const sortAscButton = document.getElementById("sort-asc");
+  const sortDescButton = document.getElementById("sort-desc");
 
-const displayCount = (taskCount) => {
-  countValue.innerText = taskCount;
-};
+  let todos = [];
 
-const addTask = () => {
-  const taskName = newTaskInput.value.trim();
-  error.style.display = "none";
-  if (!taskName) {
-    setTimeout(() => {
-      error.style.display = "block";
-    }, 200);
-    return;
-  }
-  const task = `<div class="task">
-    <input type="checkbox" class="task-check">
-    <span class="taskname">${taskName}</span>
-    <button class="edit"><i class="fa fa-pencil" aria-hidden="true"></i>
-    </button>
-    <button class="delete">
-    <i class="fa-solid fa-trash" aria-hidden="true"></i>
-    </button>
-    </div>`;
+  // Add a new to-do item
+  todoForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const title = document.getElementById("title").value;
+    const description = document.getElementById("description").value;
+    const dueDate = document.getElementById("due-date").value;
 
-  tasksContainer.insertAdjacentHTML("beforeend", task);
-
-  const deleteButtons = document.querySelectorAll(".delete");
-  deleteButtons.forEach((button) => {
-    button.onclick = () => {
-      button.parentNode.remove();
-      taskCount -= 1;
-      displayCount(taskCount);
+    const todo = {
+      id: Date.now(),
+      title,
+      description,
+      dueDate,
+      completed: false,
     };
+
+    todos.push(todo);
+    displayTodos();
+    todoForm.reset();
   });
 
-  const editButtons = document.querySelectorAll(".edit");
-  editButtons.forEach((editBtn) => {
-    editBtn.onclick = (e) => {
-      let targetElement = e.target;
-      if (!(e.target.className == "edit")) {
-        targetElement = e.target.parentElement;
+  // Display to-do items
+  function displayTodos() {
+    todoList.innerHTML = "";
+    todos.forEach((todo) => {
+      const todoItem = document.createElement("li");
+      todoItem.classList.add("todo-item");
+      if (todo.completed) {
+        todoItem.classList.add("completed");
       }
-      newTaskInput.value = targetElement.previousElementSibling?.innerText;
-      targetElement.parentNode.remove();
-      taskCount -= 1;
-      displayCount(taskCount);
-    };
-  });
+      todoItem.dataset.id = todo.id;
 
-  const taskCheck = document.querySelectorAll(".task-check");
-  taskCheck.forEach((checkbox) => {
-    checkbox.onchange = () => {
-      checkbox.nextElementSibling.classList.toggle("completed");
-      if (checkbox.checked) {
-        taskCount -= 1;
-      } else {
-        taskCount += 1;
-      }
-      displayCount(taskCount);
-    };
-  });
-  taskCount += 1;
-  displayCount(taskCount);
-  newTaskInput.value = "";
-};
+      const todoDetails = document.createElement("div");
+      todoDetails.innerHTML = `
+        <strong>${todo.title}</strong>
+        <p>${todo.description}</p>
+        <small>Due: ${new Date(todo.dueDate).toLocaleString()}</small>
+      `;
 
-addBtn.addEventListener("click", addTask);
+      const actionButtons = document.createElement("div");
+      actionButtons.classList.add("action-btn");
 
-window.onload = () => {
-  taskCount = 0;
-  displayCount(taskCount);
-  newTaskInput.value = "";
-};
+      const completeButton = document.createElement("button");
+      completeButton.textContent = todo.completed ? "Undo" : "Complete";
+      completeButton.classList.add("complete");
+      completeButton.addEventListener("click", () => toggleComplete(todo.id));
 
-newTaskInput.addEventListener("keydown", (event) => {
-  if (event.code === "Enter") {
-    addTask();
+      const editButton = document.createElement("button");
+      editButton.classList.add("edit");
+      editButton.textContent = "Edit";
+      editButton.addEventListener("click", () => editTodo(todo.id));
+
+      const deleteButton = document.createElement("button");
+      deleteButton.classList.add("delete");
+      deleteButton.textContent = "Delete";
+      deleteButton.addEventListener("click", () => deleteTodo(todo.id));
+
+      actionButtons.append(completeButton, editButton, deleteButton);
+
+      todoItem.append(todoDetails, actionButtons);
+      todoList.appendChild(todoItem);
+    });
   }
+  
+  // Toggle complete status
+  function toggleComplete(id) {
+    const todo = todos.find((todo) => todo.id === id);
+    todo.completed = !todo.completed;
+    displayTodos();
+  }
+
+  // Edit a to-do item
+  function editTodo(id) {
+    const todo = todos.find((todo) => todo.id === id);
+    document.getElementById("title").value = todo.title;
+    document.getElementById("description").value = todo.description;
+    document.getElementById("due-date").value = todo.dueDate;
+
+    deleteTodo(id);
+  }
+
+  // Delete a to-do item
+  function deleteTodo(id) {
+    todos = todos.filter((todo) => todo.id !== id);
+    displayTodos();
+  }
+
+  // Sort to-do items by due date
+  sortAscButton.addEventListener("click", () => {
+    todos.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
+    displayTodos();
+  });
+
+  sortDescButton.addEventListener("click", () => {
+    todos.sort((a, b) => new Date(b.dueDate) - new Date(a.dueDate));
+    displayTodos();
+  });
 });
