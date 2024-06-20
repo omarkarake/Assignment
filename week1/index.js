@@ -50,11 +50,11 @@ function createCounter() {
   });
 }
 
-const objectReturned = createCounter();
-objectReturned.increment();
-objectReturned.getCount();
-objectReturned.increment();
-objectReturned.getCount();
+// const objectReturned = createCounter();
+// objectReturned.increment();
+// objectReturned.getCount();
+// objectReturned.increment();
+// objectReturned.getCount();
 
 // Reusable Component with Closure and this.
 
@@ -68,26 +68,28 @@ function createTimer(duration, elementId) {
     return;
   }
 
-  // Function to update the timer display
-  function updateTimer() {
-    if (remainingTime >= 0) {
-      element.textContent = `${remainingTime} seconds remaining`;
-      remainingTime--;
-    } else {
-      clearInterval(timerId);
-      console.log(`Timer with ID ${elementId} has finished`);
-    }
-  }
+  return function () {
+    // Start the timer
+    updateTimer(); // Update immediately to show the initial duration
+    const timerId = setInterval(updateTimer, 1000);
 
-  // Start the timer
-  updateTimer(); // Update immediately to show the initial duration
-  const timerId = setInterval(updateTimer, 1000);
+    // Function to update the timer display
+    function updateTimer() {
+      if (remainingTime >= 0) {
+        element.textContent = `${remainingTime} seconds remaining`;
+        remainingTime--;
+      } else {
+        clearInterval(timerId);
+        console.log(`Timer with ID ${elementId} has finished`);
+      }
+    }
+  };
 }
 
-const timer1 = document.querySelector("#timer1");
-const timer2 = document.querySelector("#timer2");
+// const timer1 = document.querySelector("#timer1");
+// const timer2 = document.querySelector("#timer2");
 
-// createTimer(5, "timer1");
-// createTimer(7, "timer2");
-
-// remaining using this to target the timers element without hard coding the id element
+const timerForFiveSeconds = createTimer(5, "timer1");
+// const timerForSevenSeconds = createTimer(7, "timer2");
+timerForFiveSeconds.call(createTimer);
+// timerForSevenSeconds.call(createTimer);
