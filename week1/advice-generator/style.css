@@ -115,7 +115,7 @@ body {
 }
 
 /* Layout */
-@media (max-width: 420px) {
+@media (max-width: 430px) {
   /* Styles for mobile layout */
   .container {
     height: 100%;
@@ -130,6 +130,11 @@ body {
     width: 100%;
     max-width: 363px;
     max-height: 421px;
+    padding: 50px 10px;
+  }
+
+  .pattern {
+    margin-bottom: 20px;
   }
 
   #pattern-mobile {
