@@ -126,9 +126,10 @@ body {
   }
 
   .advice {
-    max-width: 343px;
-    max-height: 347px;
-    padding: 0 10px;
+    height: 100%;
+    width: 100%;
+    max-width: 363px;
+    max-height: 421px;
   }
 
   #pattern-mobile {

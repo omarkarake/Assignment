@@ -23,11 +23,11 @@ const getJsonAdviceData = function (
   });
 };
 
-getJson(url).then((data) => {
-  quoteId.innerText = data.slip["id"];
-  advice = data.slip["advice"];
-  quote.innerText = advice;
-});
+// getJson(url).then((data) => {
+//   quoteId.innerText = data.slip["id"];
+//   advice = data.slip["advice"];
+//   quote.innerText = advice;
+// });
 
 nextQuote.addEventListener("click", (e) => {
   e.preventDefault();
