@@ -90,6 +90,7 @@ body {
   position: absolute;
   bottom: -32px;
   cursor: pointer;
+  /* filter: drop-shadow(5px 5px 35px #00ffa2); */
 }
 
 #pattern-mobile {
