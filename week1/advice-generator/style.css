@@ -91,9 +91,11 @@ body {
   position: absolute;
   bottom: -32px;
   cursor: pointer;
+  transition: 0.3s ease-in-out;
 }
 
 #outer-select:hover {
+  transition: 0.3s ease-in-out;
   filter: drop-shadow(5px 5px 35px #00ffa2);
 }
 
