@@ -27,27 +27,22 @@ const superHero = {
 // • Task: Create a Superhero constructor function to streamline the creation of
 // multiple superheroes.
 
-function CreateSuperHero(name, secretIdentity, powers, weakness) {
-  this.name = name;
-  this.secretIdentity = secretIdentity;
-  this.powers = powers;
-  this.weakness = weakness;
-  //   this.usePower = function (powerName) {
-  //     console.log(`${this.name} is so ${powerName ? powerName : this.powers[0]}`);
-  //   };
-  //   this.revealIdentity = function () {
-  //     console.log(`${this.name} real name is ${this.secretIdentity}`);
-  //   };
+class CreateSuperHero {
+  constructor(name, secretIdentity, powers, weakness) {
+    this.name = name;
+    this.secretIdentity = secretIdentity;
+    this.powers = powers;
+    this.weakness = weakness;
+  }
+  // Using prototypal inheritance
+  usePower(powerName) {
+    console.log(`${this.name} is so ${powerName ? powerName : this.powers[0]}`);
+  }
+
+  revealIdentity() {
+    console.log(`${this.name} real name is ${this.secretIdentity}`);
+  }
 }
-
-// Using prototypal inheritance
-CreateSuperHero.prototype.usePower = function (powerName) {
-  console.log(`${this.name} is so ${powerName ? powerName : this.powers[0]}`);
-};
-
-CreateSuperHero.prototype.revealIdentity = function () {
-  console.log(`${this.name} real name is ${this.secretIdentity}`);
-};
 
 const realFlash = new CreateSuperHero(
   "the flash",
