@@ -40,7 +40,7 @@ function CreateSuperHero(name, secretIdentity, powers, weakness) {
   //   };
 }
 
-// Using protypical inheritance
+// Using prototypal inheritance
 CreateSuperHero.prototype.usePower = function (powerName) {
   console.log(`${this.name} is so ${powerName ? powerName : this.powers[0]}`);
 };
