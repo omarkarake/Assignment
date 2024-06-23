@@ -93,6 +93,7 @@ console.log(nowObject.getFormattedTime());
 
 // Initial display of the current time
 timeEl.innerText = nowObject.get12HourTime();
+timeEl.style.color = nowObject.options.color;
 
 // Function to update the time display every second
 // Function to update the clock object with the current time
