@@ -89,7 +89,8 @@ const nowObject = new Clock(currentHour, currentMinute, currentSecond, {
 });
 console.log(nowObject);
 
-console.log(nowObject.getFormattedTime());
+console.log(nowObject.get12HourTime().slice(0, 8));
+const alarm = "19:56:00";
 
 // Initial display of the current time
 timeEl.innerText = nowObject.get12HourTime();
@@ -104,6 +105,10 @@ function updateTime() {
   nowObject.seconds = currentDate.getSeconds();
   const nowTime = nowObject.get12HourTime();
   timeEl.innerText = nowTime;
+  // alert time
+  nowTime.slice(0, 8) === alarm
+    ? alert(`Alarm got triggered of ${alarm}`)
+    : "alarm still pending";
 }
 
 // function displayTime() {
