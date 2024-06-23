@@ -1,3 +1,5 @@
+const timeEl = document.querySelector(".time");
+
 // 1. Time Object Basics
 
 // Create a Date object to represent the current time
@@ -36,14 +38,39 @@ Clock.prototype.get12HourTime = function () {
   const formattedHours = Number(String(this.hours).padStart(2, "0"));
   const formattedMinutes = String(this.minutes).padStart(2, "0");
   const formattedSeconds = String(this.seconds).padStart(2, "0");
-  console.log(
-    `${
-      formattedHours < 12
-        ? `${formattedHours}:${formattedMinutes}:${formattedSeconds} AM`
-        : `${formattedHours}:${formattedMinutes}:${formattedSeconds} PM`
-    }`
-  );
+  // console.log(
+  //   `${
+  //     formattedHours < 12
+  //       ? `${formattedHours}:${formattedMinutes}:${formattedSeconds} AM`
+  //       : `${formattedHours}:${formattedMinutes}:${formattedSeconds} PM`
+  //   }`
+  // );
+  return `${
+    formattedHours < 12
+      ? `${formattedHours}:${formattedMinutes}:${formattedSeconds} AM`
+      : `${formattedHours}:${formattedMinutes}:${formattedSeconds} PM`
+  }`;
 };
 
-nowObject.getFormattedTime()
-nowObject.get12HourTime();
+nowObject.getFormattedTime();
+
+// Initial display of the current time
+timeEl.innerText = nowObject.get12HourTime();
+
+// Function to update the time display every second
+// Function to update the clock object with the current time
+function updateTime() {
+  const currentDate = new Date(); // Get the current time
+  nowObject.hours = currentDate.getHours();
+  nowObject.minutes = currentDate.getMinutes();
+  nowObject.seconds = currentDate.getSeconds();
+}
+
+function displayTime() {
+  updateTime();
+  const nowTime = nowObject.get12HourTime();
+  timeEl.innerText = nowTime;
+}
+
+// Start the interval to update the clock every second
+setInterval(displayTime, 1000);
