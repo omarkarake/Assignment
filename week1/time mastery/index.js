@@ -11,4 +11,14 @@ const currentSecond = currentDate.getSeconds();
 // Log the current hour, minute, and second to the console
 console.log(`Current Time: ${currentHour}:${currentMinute}:${currentSecond}`);
 
+// 2. Object-Oriented Clock:
+
+const Clock = function (hours, minutes, seconds) {
+  this.hours = hours;
+  this.minutes = minutes;
+  this.seconds = seconds;
+};
+
+const nowObject = new Clock(currentHour, currentMinute, currentSecond);
+console.log(nowObject);
 
