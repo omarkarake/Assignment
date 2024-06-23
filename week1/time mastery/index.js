@@ -64,13 +64,13 @@ function updateTime() {
   nowObject.hours = currentDate.getHours();
   nowObject.minutes = currentDate.getMinutes();
   nowObject.seconds = currentDate.getSeconds();
-}
-
-function displayTime() {
-  updateTime();
   const nowTime = nowObject.get12HourTime();
   timeEl.innerText = nowTime;
 }
 
+// function displayTime() {
+//   updateTime();
+// }
+
 // Start the interval to update the clock every second
-setInterval(displayTime, 1000);
+setInterval(updateTime, 1000);
