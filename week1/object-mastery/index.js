@@ -44,21 +44,85 @@ class CreateSuperHero {
   }
 }
 
-const realFlash = new CreateSuperHero(
-  "the flash",
-  "Berry alain",
-  ["fast", "speed"],
-  "girlfriend"
+class CreateSuperVillain extends CreateSuperHero {
+  constructor(name, secretIdentity, powers, weakness) {
+    super(name, secretIdentity, powers, weakness);
+    this.name = name;
+    this.secretIdentity = secretIdentity;
+    this.powers = powers;
+    this.weakness = weakness;
+  }
+}
+
+// Creating instances of CreateSuperVillain
+const villain1 = new CreateSuperVillain(
+  "Dr. Chaos",
+  "Victor Von Doom",
+  ["Mind Control", "Telekinesis"],
+  "Overconfidence"
 );
 
-const hulk = new CreateSuperHero(
-  "Incredible hulk",
-  "Burner",
-  ["Strong", "Jump"],
-  "girlfriend"
+const villain2 = new CreateSuperVillain(
+  "The Phantom",
+  "Lara Black",
+  ["Invisibility", "Intangibility"],
+  "Bright Light"
 );
 
-realFlash.usePower();
-console.log(hulk);
-// realFlash.usePower();
-// realFlash.revealIdentity();
+const villain3 = new CreateSuperVillain(
+  "Inferno",
+  "Alex Blaze",
+  ["Pyrokinesis", "Flight"],
+  "Water"
+);
+
+const villain4 = new CreateSuperVillain(
+  "Frostbite",
+  "Nina Frost",
+  ["Cryokinesis", "Ice Constructs"],
+  "Heat"
+);
+
+// Creating instances of CreateSuperHero
+const hero1 = new CreateSuperHero(
+  "Captain Thunder",
+  "Jake Storm",
+  ["Super Strength", "Lightning Manipulation"],
+  "Energy Drain"
+);
+
+const hero2 = new CreateSuperHero(
+  "Shadow Hunter",
+  "Mia Night",
+  ["Shadow Manipulation", "Stealth"],
+  "Bright Light"
+);
+
+const hero3 = new CreateSuperHero(
+  "Aqua Guardian",
+  "Liam Tide",
+  ["Hydrokinesis", "Underwater Breathing"],
+  "Dehydration"
+);
+
+const hero4 = new CreateSuperHero(
+  "Solar Flare",
+  "Ava Ray",
+  ["Solar Energy Manipulation", "Flight"],
+  "Lunar Eclipse"
+);
+
+const superVillains = [villain1, villain2, villain3, villain4];
+const superHeroes = [hero1, hero2, hero3, hero4];
+
+superHeroes.forEach((hero) => {
+  console.log(hero.name);
+});
+
+superVillains.filter((villain) => {
+  console.log(
+    villain.weakness === "Overconfidence"
+      ? villain
+      : "no villain with overconfidence"
+  );
+});
