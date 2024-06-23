@@ -15,15 +15,18 @@ console.log(`Current Time: ${currentHour}:${currentMinute}:${currentSecond}`);
 
 // 2. Object-Oriented Clock:
 
-const Clock = function (hours, minutes, seconds) {
+const Clock = function (hours, minutes, seconds, options) {
   this.hours = hours;
   this.minutes = minutes;
   this.seconds = seconds;
+  this.options = {
+    format: options.format || "24-hour", // default to 24-hour format
+    timeZoneOffset: options.timeZoneOffset || 0, // default to UTC
+    color: options.color || "black", // default color
+  };
 };
 
-const nowObject = new Clock(currentHour, currentMinute, currentSecond);
-console.log(nowObject);
-
+/*
 // 3. Time Formatting
 // getFormattedTime(): Returns a string in the format “HH:MM:SS”.;
 Clock.prototype.getFormattedTime = function () {
@@ -51,8 +54,42 @@ Clock.prototype.get12HourTime = function () {
       : `${formattedHours}:${formattedMinutes}:${formattedSeconds} PM`
   }`;
 };
+*/
+Clock.prototype.getFormattedTime = function () {
+  let hours = this.hours + this.options.timeZoneOffset;
+  if (this.options.format === "12-hour") {
+    console.log(true);
+    hours = hours % 12 || 12; // Convert to 12-hour format
+  } else {
+    console.log(false);
+    hours = String(hours).padStart(2, "0");
+  }
+  const formattedMinutes = String(this.minutes).padStart(2, "0");
+  const formattedSeconds = String(this.seconds).padStart(2, "0");
+  return `${hours}:${formattedMinutes}:${formattedSeconds}`;
+};
 
-nowObject.getFormattedTime();
+Clock.prototype.get12HourTime = function () {
+  let hours = this.hours + this.options.timeZoneOffset;
+  if (this.options.format === "12-hour") {
+    hours = hours % 12 || 12; // Convert to 12-hour format
+  } else {
+    hours = String(hours).padStart(2, "0");
+  }
+  const formattedMinutes = String(this.minutes).padStart(2, "0");
+  const formattedSeconds = String(this.seconds).padStart(2, "0");
+  const period = this.hours < 12 ? "AM" : "PM";
+  return `${hours}:${formattedMinutes}:${formattedSeconds} ${period}`;
+};
+
+const nowObject = new Clock(currentHour, currentMinute, currentSecond, {
+  format: "24-hour", // Set to 12-hour format
+  timeZoneOffset: 0, // Set to UTC
+  color: "blue", // Set text color
+});
+console.log(nowObject);
+
+console.log(nowObject.getFormattedTime());
 
 // Initial display of the current time
 timeEl.innerText = nowObject.get12HourTime();

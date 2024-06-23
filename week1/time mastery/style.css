@@ -1,0 +1,10 @@
+.clock-container {
+    font-size: 2em;
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .time {
+    color: black; /* Default color, will be overridden by JavaScript */
+  }
+  
