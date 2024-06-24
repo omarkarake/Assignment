@@ -101,3 +101,19 @@ button:hover {
   background: #2980b9;
   transform: scale(1.1) rotate(5deg);
 }
+
+.toggle {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #3498db;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.toggle:hover {
+  background: #2980b9;
+  transform: scale(1.1) rotate(5deg);
+}

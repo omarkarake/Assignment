@@ -3,6 +3,7 @@ const form = document.querySelector("form");
 const hhInput = document.querySelector(".hh");
 const mmInput = document.querySelector(".mm");
 const ssInput = document.querySelector(".ss");
+const toggle = document.querySelector(".toggle");
 
 let alarm = "";
 
@@ -95,4 +96,14 @@ form.addEventListener("submit", function (e) {
   hhInput.value = "";
   mmInput.value = "";
   ssInput.value = "";
+});
+
+// Event listener for toggling the time
+toggle.addEventListener("click", () => {
+  console.log(nowObject.options.format === "24-hour");
+  if (nowObject.options.format === "24-hour") {
+    nowObject.options.format = "12-hour";
+  } else {
+    nowObject.options.format = "24-hour";
+  }
 });
