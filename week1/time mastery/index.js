@@ -1,6 +1,10 @@
 const timeEl = document.querySelector(".time");
+const form = document.querySelector("form");
+const hhInput = document.querySelector(".hh");
+const mmInput = document.querySelector(".mm");
+const ssInput = document.querySelector(".ss");
 
-// 1. Time Object Basics
+let alarm = "";
 
 // Create a Date object to represent the current time
 const currentDate = new Date();
@@ -13,8 +17,7 @@ const currentSecond = currentDate.getSeconds();
 // Log the current hour, minute, and second to the console
 console.log(`Current Time: ${currentHour}:${currentMinute}:${currentSecond}`);
 
-// 2. Object-Oriented Clock:
-
+// Object-Oriented Clock:
 const Clock = function (hours, minutes, seconds, options) {
   this.hours = hours;
   this.minutes = minutes;
@@ -25,13 +28,12 @@ const Clock = function (hours, minutes, seconds, options) {
     color: options.color || "black", // default color
   };
 };
+
 Clock.prototype.getFormattedTime = function () {
   let hours = this.hours + this.options.timeZoneOffset;
   if (this.options.format === "12-hour") {
-    console.log(true);
     hours = hours % 12 || 12; // Convert to 12-hour format
   } else {
-    console.log(false);
     hours = String(hours).padStart(2, "0");
   }
   const formattedMinutes = String(this.minutes).padStart(2, "0");
@@ -57,10 +59,8 @@ const nowObject = new Clock(currentHour, currentMinute, currentSecond, {
   timeZoneOffset: 0, // Set to UTC
   color: "blue", // Set text color
 });
-console.log(nowObject.get12HourTime());
 
-console.log(nowObject.get12HourTime().slice(0, 8));
-const alarm = "19:56:00";
+console.log(nowObject.get12HourTime());
 
 // Initial display of the current time
 timeEl.innerText = nowObject.get12HourTime();
@@ -75,10 +75,24 @@ function updateTime() {
   const nowTime = nowObject.get12HourTime();
   timeEl.innerText = nowTime;
   // alert time
-  nowTime.slice(0, 8) === alarm
-    ? alert(`Alarm got triggered of ${alarm}`)
-    : "alarm still pending";
+  if (nowTime.slice(0, 8) === alarm) {
+    alert(`Alarm got triggered for ${alarm}`);
+    alarm = ""; // Reset alarm after triggering
+  }
 }
 
 // Start the interval to update the clock every second
 setInterval(updateTime, 1000);
+
+// Event listener for the form submission
+form.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const hours = hhInput.value.padStart(2, "0");
+  const minutes = mmInput.value.padStart(2, "0");
+  const seconds = ssInput.value.padStart(2, "0");
+  alarm = `${hours}:${minutes}:${seconds}`;
+  alert(`Alarm is set for ${alarm}`);
+  hhInput.value = "";
+  mmInput.value = "";
+  ssInput.value = "";
+});
