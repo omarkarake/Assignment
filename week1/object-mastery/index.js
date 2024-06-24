@@ -28,11 +28,12 @@ const superHero = {
 // multiple superheroes.
 
 class CreateSuperHero {
-  constructor(name, secretIdentity, powers, weakness) {
+  constructor(name, secretIdentity, powers, weakness, image) {
     this.name = name;
     this.secretIdentity = secretIdentity;
     this.powers = powers;
     this.weakness = weakness;
+    this.image = image;
   }
   // Using prototypal inheritance
   usePower(powerName) {
@@ -54,75 +55,56 @@ class CreateSuperVillain extends CreateSuperHero {
   }
 }
 
-// Creating instances of CreateSuperVillain
-const villain1 = new CreateSuperVillain(
-  "Dr. Chaos",
-  "Victor Von Doom",
-  ["Mind Control", "Telekinesis"],
-  "Overconfidence"
-);
+// Superheroes
+const superheroes = [
+  new CreateSuperHero(
+    "Superman",
+    "Clark Kent",
+    ["Super strength", "Flight", "X-ray vision", "Heat vision"],
+    "Kryptonite",
+    "https://images.wallpapersden.com/image/download/superman-arena-of-valor-art_bWxna2uUmZqaraWkpJRnZW5rrWZnZm4.jpg"
+  ),
+  new CreateSuperHero(
+    "Spider-Man",
+    "Peter Parker",
+    ["Wall-crawling", "Super strength", "Spider-sense", "Web-shooting"],
+    "Ethyl chloride pesticide",
+    "https://4kwallpapers.com/images/wallpapers/marvels-spider-man-2880x1800-11990.jpeg"
+  ),
+  new CreateSuperHero(
+    "Wonder Woman",
+    "Diana Prince",
+    ["Super strength", "Flight", "Combat skills", "Lasso of Truth"],
+    "Piercing weapons",
+    "https://c4.wallpaperflare.com/wallpaper/840/876/23/wonder-woman-dc-comics-gal-gadot-sword-wallpaper-preview.jpg"
+  ),
+];
 
-const villain2 = new CreateSuperVillain(
-  "The Phantom",
-  "Lara Black",
-  ["Invisibility", "Intangibility"],
-  "Bright Light"
-);
+// Supervillains
+const supervillains = [
+  new CreateSuperVillain(
+    "Joker",
+    "Unknown",
+    ["High intelligence", "Expert chemist", "Master of disguise"],
+    "His own insanity",
+    "https://w0.peakpx.com/wallpaper/820/365/HD-wallpaper-joker-gun-shot.jpg"
+  ),
+  new CreateSuperVillain(
+    "Lex Luthor",
+    "Alexander Joseph Luthor",
+    ["Genius-level intellect", "Expert strategist", "Master manipulator"],
+    "Ego and obsession with Superman",
+    "https://c4.wallpaperflare.com/wallpaper/45/146/532/lex-luthor-dc-universe-online-wallpaper-preview.jpg"
+  ),
+  new CreateSuperVillain(
+    "Green Goblin",
+    "Norman Osborn",
+    ["Super strength", "Regeneration", "Advanced technology"],
+    "Mental instability",
+    "https://c4.wallpaperflare.com/wallpaper/133/619/801/spider-man-green-goblin-norman-osborn-wallpaper-preview.jpg"
+  ),
+];
 
-const villain3 = new CreateSuperVillain(
-  "Inferno",
-  "Alex Blaze",
-  ["Pyrokinesis", "Flight"],
-  "Water"
-);
-
-const villain4 = new CreateSuperVillain(
-  "Frostbite",
-  "Nina Frost",
-  ["Cryokinesis", "Ice Constructs"],
-  "Heat"
-);
-
-// Creating instances of CreateSuperHero
-const hero1 = new CreateSuperHero(
-  "Captain Thunder",
-  "Jake Storm",
-  ["Super Strength", "Lightning Manipulation"],
-  "Energy Drain"
-);
-
-const hero2 = new CreateSuperHero(
-  "Shadow Hunter",
-  "Mia Night",
-  ["Shadow Manipulation", "Stealth"],
-  "Bright Light"
-);
-
-const hero3 = new CreateSuperHero(
-  "Aqua Guardian",
-  "Liam Tide",
-  ["Hydrokinesis", "Underwater Breathing"],
-  "Dehydration"
-);
-
-const hero4 = new CreateSuperHero(
-  "Solar Flare",
-  "Ava Ray",
-  ["Solar Energy Manipulation", "Flight"],
-  "Lunar Eclipse"
-);
-
-const superVillains = [villain1, villain2, villain3, villain4];
-const superHeroes = [hero1, hero2, hero3, hero4];
-
-superHeroes.forEach((hero) => {
-  console.log(hero.name);
-});
-
-superVillains.filter((villain) => {
-  console.log(
-    villain.weakness === "Overconfidence"
-      ? villain
-      : "no villain with overconfidence"
-  );
-});
+// Output the arrays to verify
+console.log(superheroes);
+console.log(supervillains);
