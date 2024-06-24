@@ -25,36 +25,6 @@ const Clock = function (hours, minutes, seconds, options) {
     color: options.color || "black", // default color
   };
 };
-
-/*
-// 3. Time Formatting
-// getFormattedTime(): Returns a string in the format “HH:MM:SS”.;
-Clock.prototype.getFormattedTime = function () {
-  const formattedHours = String(this.hours).padStart(2, "0");
-  const formattedMinutes = String(this.minutes).padStart(2, "0");
-  const formattedSeconds = String(this.seconds).padStart(2, "0");
-  console.log(typeof formattedHours);
-  console.log(`${formattedHours}:${formattedMinutes}:${formattedSeconds}`);
-};
-// get12HourTime(): Returns a string with AM/PM.
-Clock.prototype.get12HourTime = function () {
-  const formattedHours = Number(String(this.hours).padStart(2, "0"));
-  const formattedMinutes = String(this.minutes).padStart(2, "0");
-  const formattedSeconds = String(this.seconds).padStart(2, "0");
-  // console.log(
-  //   `${
-  //     formattedHours < 12
-  //       ? `${formattedHours}:${formattedMinutes}:${formattedSeconds} AM`
-  //       : `${formattedHours}:${formattedMinutes}:${formattedSeconds} PM`
-  //   }`
-  // );
-  return `${
-    formattedHours < 12
-      ? `${formattedHours}:${formattedMinutes}:${formattedSeconds} AM`
-      : `${formattedHours}:${formattedMinutes}:${formattedSeconds} PM`
-  }`;
-};
-*/
 Clock.prototype.getFormattedTime = function () {
   let hours = this.hours + this.options.timeZoneOffset;
   if (this.options.format === "12-hour") {
@@ -87,7 +57,7 @@ const nowObject = new Clock(currentHour, currentMinute, currentSecond, {
   timeZoneOffset: 0, // Set to UTC
   color: "blue", // Set text color
 });
-console.log(nowObject);
+console.log(nowObject.get12HourTime());
 
 console.log(nowObject.get12HourTime().slice(0, 8));
 const alarm = "19:56:00";
@@ -96,7 +66,6 @@ const alarm = "19:56:00";
 timeEl.innerText = nowObject.get12HourTime();
 timeEl.style.color = nowObject.options.color;
 
-// Function to update the time display every second
 // Function to update the clock object with the current time
 function updateTime() {
   const currentDate = new Date(); // Get the current time
@@ -110,10 +79,6 @@ function updateTime() {
     ? alert(`Alarm got triggered of ${alarm}`)
     : "alarm still pending";
 }
-
-// function displayTime() {
-//   updateTime();
-// }
 
 // Start the interval to update the clock every second
 setInterval(updateTime, 1000);

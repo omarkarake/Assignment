@@ -1,22 +1,103 @@
-.clock-container {
-  font-size: 2em;
-  text-align: center;
-  margin-top: 20px;
-}
+/* style.css */
 
 body {
+  font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
+  margin: 0;
+  color: #fff;
+}
+
+.container {
+  text-align: center;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .time {
-  font-family: "Arial", sans-serif;
-  font-size: 24px; /* Size of the font */
-  color: #333; /* Text color */
-  background-color: #f0f0f0; /* Background color */
-  padding: 10px 20px;
+  font-size: 48px;
+  margin-bottom: 20px;
+  animation: timePulse 1s infinite;
+}
+
+@keyframes timePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  animation: slideIn 1s ease-in-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+input[type="text"] {
+  width: 50px;
+  padding: 10px;
+  border: none;
   border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: inline-block;
+  text-align: center;
+  font-size: 18px;
+  transition: transform 0.3s;
+}
+
+input[type="text"]:focus {
+  transform: scale(1.1);
+  outline: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  background: #3498db;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+button:hover {
+  background: #2980b9;
+  transform: scale(1.1) rotate(5deg);
 }
