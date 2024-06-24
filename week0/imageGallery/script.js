@@ -62,7 +62,8 @@ renderImages();
 const modal = document.getElementById("image-modal");
 const modalImg = document.getElementById("modal-image");
 const captionText = document.getElementById("caption");
-const closeBtn = document.getElementsByClassName("close")[0];
+const closeBtn = document.querySelector(".close");
+console.log(closeBtn);
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 
