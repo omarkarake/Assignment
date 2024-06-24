@@ -46,12 +46,8 @@ class CreateSuperHero {
 }
 
 class CreateSuperVillain extends CreateSuperHero {
-  constructor(name, secretIdentity, powers, weakness) {
-    super(name, secretIdentity, powers, weakness);
-    this.name = name;
-    this.secretIdentity = secretIdentity;
-    this.powers = powers;
-    this.weakness = weakness;
+  constructor(name, secretIdentity, powers, weakness, image) {
+    super(name, secretIdentity, powers, weakness, image);
   }
 }
 
@@ -108,3 +104,32 @@ const supervillains = [
 // Output the arrays to verify
 console.log(superheroes);
 console.log(supervillains);
+
+// Function to update hero and villain
+function updateHeroVillain() {
+  const hero1 = document.querySelector(".hero1");
+  const hero2 = document.querySelector(".hero2");
+  const firstHeroName = document.querySelector(".first-hero-name");
+  const secondHeroName = document.querySelector(".second-hero-name");
+
+  const randomHero = Math.trunc(Math.random() * superheroes.length);
+  const randomVillain = Math.trunc(Math.random() * supervillains.length);
+
+  const randomHeroSelection = superheroes[randomHero];
+  const randomVillainSelection = supervillains[randomVillain];
+
+  hero1.style.backgroundImage = `url(${randomHeroSelection.image})`;
+  hero2.style.backgroundImage = `url(${randomVillainSelection.image})`;
+  firstHeroName.innerHTML = randomHeroSelection.name;
+  secondHeroName.innerHTML = randomVillainSelection.name;
+
+  console.log(randomHeroSelection.image);
+  console.log(randomVillainSelection.image);
+}
+
+// Initial call to set the images and names
+updateHeroVillain();
+
+// Add event listener to the button
+const fightingButton = document.querySelector(".fighting");
+fightingButton.addEventListener("click", updateHeroVillain);
