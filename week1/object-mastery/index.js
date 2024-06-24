@@ -103,6 +103,9 @@ const supervillains = [
 
 // Output the arrays to verify
 console.log(superheroes);
+superheroes.forEach((hero) => {
+  console.log(hero.name === "Spider-Man");
+});
 console.log(supervillains);
 
 // Function to update hero and villain
