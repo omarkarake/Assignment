@@ -1,10 +1,22 @@
 .clock-container {
-    font-size: 2em;
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  .time {
-    color: black; /* Default color, will be overridden by JavaScript */
-  }
-  
+  font-size: 2em;
+  text-align: center;
+  margin-top: 20px;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.time {
+  font-family: "Arial", sans-serif;
+  font-size: 24px; /* Size of the font */
+  color: #333; /* Text color */
+  background-color: #f0f0f0; /* Background color */
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
